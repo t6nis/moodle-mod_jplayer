@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/jplayer/db" VERSION="20101203" COMMENT="XMLDB file for Moodle mod/jplayer"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="jplayer" COMMENT="Default comment for jplayer please edit me">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="course"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course jplayer activity belongs to" PREVIOUS="id" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances" PREVIOUS="course" NEXT="intro"/>
+        <FIELD NAME="intro" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="General introduction of the jplayer activity" PREVIOUS="name" NEXT="introformat"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)" PREVIOUS="intro" NEXT="timecreated"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="introformat" NEXT="timemodified"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated" NEXT="urltype"/>
+        <FIELD NAME="urltype" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="urltype" PREVIOUS="timemodified" NEXT="jplayerfile"/>
+        <FIELD NAME="jplayerfile" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="jplayerfile" PREVIOUS="urltype" NEXT="type"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" DEFAULT="undefined" COMMENT="type" PREVIOUS="jplayerfile" NEXT="streamer"/>
+        <FIELD NAME="streamer" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="streamer" PREVIOUS="type" NEXT="playlistposition"/>
+        <FIELD NAME="playlistposition" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="playlist" PREVIOUS="streamer" NEXT="playlistsize"/>
+        <FIELD NAME="playlistsize" TYPE="int" LENGTH="4" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="playlistsize" PREVIOUS="playlistposition" NEXT="autostart"/>
+        <FIELD NAME="autostart" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="autostart" PREVIOUS="playlistsize" NEXT="stretching"/>
+        <FIELD NAME="stretching" TYPE="char" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="stretching" PREVIOUS="autostart" NEXT="mute"/>
+        <FIELD NAME="mute" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="mute" PREVIOUS="stretching" NEXT="controls"/>
+        <FIELD NAME="controls" TYPE="char" LENGTH="7" NOTNULL="false" SEQUENCE="false" COMMENT="controlbar" PREVIOUS="mute" NEXT="jplayerrepeat"/>
+        <FIELD NAME="jplayerrepeat" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="jplayerrepeat" PREVIOUS="controls" NEXT="title"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="title" PREVIOUS="jplayerrepeat" NEXT="width"/>
+        <FIELD NAME="width" TYPE="char" LENGTH="4" NOTNULL="false" SEQUENCE="false" COMMENT="width" PREVIOUS="title" NEXT="height"/>
+        <FIELD NAME="height" TYPE="char" LENGTH="4" NOTNULL="false" SEQUENCE="false" COMMENT="height" PREVIOUS="width" NEXT="image"/>
+        <FIELD NAME="image" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="image" PREVIOUS="height" NEXT="notes"/>
+        <FIELD NAME="notes" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="notes" PREVIOUS="image" NEXT="notesformat"/>
+        <FIELD NAME="notesformat" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="notesformat" PREVIOUS="notes" NEXT="captionsback"/>
+        <FIELD NAME="captionsback" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="captionsback" PREVIOUS="notesformat" NEXT="captionsfile"/>
+        <FIELD NAME="captionsfile" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="captionsfile" PREVIOUS="captionsback" NEXT="captionsfontsize"/>
+        <FIELD NAME="captionsfontsize" TYPE="int" LENGTH="3" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="captionsfontsize" PREVIOUS="captionsfile" NEXT="captionsstate"/>
+        <FIELD NAME="captionsstate" TYPE="char" LENGTH="12" NOTNULL="false" SEQUENCE="false" COMMENT="captionsstate" PREVIOUS="captionsfontsize" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
