@@ -65,8 +65,7 @@ function jplayer_list_type() {
 */
 function jplayer_list_streamer() {
     return array(
-        '' => 'None',
-        'rtmp://flash.ut.ee/uttv_avalik/mp4:' => 'UTTV avalik video(kirjuta väljale "Media File" ainult faili nimi)',
+        '' => 'None',       
         //'lighttpd' => 'Lighttpd', 
     );
 }
