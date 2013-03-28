@@ -44,7 +44,7 @@ $string['urltype'] = 'Type';
 $string['linkurl'] = 'Link';
 $string['jplayerfile'] = 'File';
 $string['jplayerfile_help'] = 'File .mp4, .flv, .webm only';
-$string['type'] = 'Type';
+$string['type'] = 'Playback type';
 $string['streamer'] = 'Streamer';
 //Playlists
 $string['playlists'] = 'Playlist';
