@@ -69,7 +69,8 @@ class mod_jplayer_mod_form extends moodleform_mod {
         $mform->addElement('select', 'urltype', get_string('urltype', 'jplayer'), array(0 => 'URL', 1 => 'FILE'));
         
         $mform->addElement('text', 'linkurl', get_string('linkurl', 'jplayer'), array('size' => '47')); 
-        $mform->setDefault('linkurl', 'http://');      
+        $mform->setDefault('linkurl', 'http://');
+        $mform->setType('linkurl', PARAM_RAW_TRIMMED);
         // Disable my control if a checkbox is checked.
         $mform->disabledIf('linkurl', 'urltype', 'eq', 1);
         
@@ -93,6 +94,7 @@ class mod_jplayer_mod_form extends moodleform_mod {
         $mform->setDefault('playlistposition', 'none');
         // playlistsize
         $mform->addElement('text', 'playlistsize', get_string('playlistsize', 'jplayer'), array('size' => '6'));
+        $mform->setType('playlistsize', PARAM_INT);
         $mform->setDefault('playlistsize', '260');
 
     //--------------------------------------- BEHAVIOUR ---------------------------------------
@@ -123,12 +125,15 @@ class mod_jplayer_mod_form extends moodleform_mod {
         $mform->addHelpButton('appearance', 'jplayerappearance', 'jplayer');
         // title
         $mform->addElement('text', 'title', get_string('title', 'jplayer'), array('size' => '80'));
+        $mform->setType('title', PARAM_TEXT);
         // width
         $mform->addElement('text', 'width', get_string('width', 'jplayer'), array('size' => '6'));
+        $mform->setType('width', PARAM_RAW_TRIMMED);
         //$mform->addRule('width', get_string('required'), 'required', null, 'client');
         $mform->setDefault('width', '100%');
         // height
         $mform->addElement('text', 'height', get_string('height', 'jplayer'), array('size' => '6'));
+        $mform->setType('height', PARAM_INT);
         //$mform->addRule('height', get_string('required'), 'required', null, 'client');
         $mform->setDefault('height', '480');
         // image
@@ -154,6 +159,7 @@ class mod_jplayer_mod_form extends moodleform_mod {
         $mform->disabledIf('captionsfile', 'type', 'eq', 'ytplaylist');
         // captionsfontsize
         $mform->addElement('text', 'captionsfontsize', get_string('captionsfontsize', 'jplayer'), array('size' => 6));
+        $mform->setType('captionsfontsize', PARAM_INT);
         $mform->setDefault('captionsfontsize', '14');
         // captionsstate
         $mform->addElement('select', 'captionsstate', get_string('captionsstate', 'jplayer'), array('true' => 'true', 'false' => 'false'));

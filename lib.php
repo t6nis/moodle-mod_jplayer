@@ -187,8 +187,6 @@ function jplayer_delete_instance($id) {
         return false;
     }
 
-    # Delete any dependent records here #
-
     $DB->delete_records('jplayer', array('id' => $jplayer->id));
 
     return true;
@@ -204,7 +202,7 @@ function jplayer_delete_instance($id) {
  * @return stdClass|null
  */
 function jplayer_user_outline($course, $user, $mod, $jplayer) {
-
+    
     $return = new stdClass();
     $return->time = 0;
     $return->info = '';
@@ -271,7 +269,7 @@ function jplayer_print_recent_mod_activity($activity, $courseid, $detail, $modna
  * @todo Finish documenting this function
  **/
 function jplayer_cron () {
-    return true;
+    return false;
 }
 
 /**
@@ -299,15 +297,8 @@ function jplayer_get_extra_capabilities() {
  * @param int $jplayerid ID of an instance of this module
  * @return bool true if the scale is used by the given jplayer instance
  */
-function jplayer_scale_used($jplayerid, $scaleid) {
-    global $DB;
-
-    /** @example */
-    if ($scaleid and $DB->record_exists('jplayer', array('id' => $jplayerid, 'grade' => -$scaleid))) {
-        return true;
-    } else {
-        return false;
-    }
+function jplayer_scale_used($jplayerid, $scaleid) {    
+    return false;
 }
 
 /**
@@ -319,14 +310,7 @@ function jplayer_scale_used($jplayerid, $scaleid) {
  * @return boolean true if the scale is used by any jplayer instance
  */
 function jplayer_scale_used_anywhere($scaleid) {
-    global $DB;
-
-    /** @example */
-    if ($scaleid and $DB->record_exists('jplayer', array('grade' => -$scaleid))) {
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 }
 
 /**
@@ -338,17 +322,7 @@ function jplayer_scale_used_anywhere($scaleid) {
  * @return void
  */
 function jplayer_grade_item_update(stdClass $jplayer) {
-    global $CFG;
-    require_once($CFG->libdir.'/gradelib.php');
-
-    /** @example */
-    $item = array();
-    $item['itemname'] = clean_param($jplayer->name, PARAM_NOTAGS);
-    $item['gradetype'] = GRADE_TYPE_VALUE;
-    $item['grademax']  = $jplayer->grade;
-    $item['grademin']  = 0;
-
-    grade_update('mod/jplayer', $jplayer->course, 'mod', 'jplayer', $jplayer->id, 0, null, $item);
+    return false;
 }
 
 /**
@@ -361,13 +335,7 @@ function jplayer_grade_item_update(stdClass $jplayer) {
  * @return void
  */
 function jplayer_update_grades(stdClass $jplayer, $userid = 0) {
-    global $CFG, $DB;
-    require_once($CFG->libdir.'/gradelib.php');
-
-    /** @example */
-    $grades = array(); // populate array of grade objects indexed by userid
-
-    grade_update('mod/jplayer', $jplayer->course, 'mod', 'jplayer', $jplayer->id, 0, $grades);
+    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
