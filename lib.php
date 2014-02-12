@@ -509,12 +509,9 @@ function jplayer_extend_settings_navigation(settings_navigation $settingsnav, na
 * @param $jplayer (mdl_mplayer DB record for current mplayer module instance)
 * @return string
 */
-function jplayer_video($jplayer) {
+function jplayer_video($jplayer, $cm, $context) {
 
     global $CFG, $COURSE, $CFG;
-
-    $cm = get_coursemodule_from_instance('jplayer', $jplayer->id, $COURSE->id);        
-    $context = get_context_instance(CONTEXT_MODULE, $cm->id);
 
     $video = jplayer_player_helper($jplayer, $cm, $context);
 

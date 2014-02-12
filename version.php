@@ -29,7 +29,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$module->version   = 2013092300;               // If version == 0 then module will not be installed
-$module->requires  = 2011031900;      // Requires this Moodle version
+$module->version   = 2014021200;               // If version == 0 then module will not be installed
+$module->requires  = 2011120500;      // Requires this Moodle version
 $module->cron      = 0;               // Period for cron to check this module (secs)
 $module->component = 'mod_jplayer'; // To check on upgrade, that module sits in correct place

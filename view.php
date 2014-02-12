@@ -29,6 +29,7 @@
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
+require_once($CFG->libdir . '/completionlib.php');
 
 $id = optional_param('id', 0, PARAM_INT); // course_module ID, or
 $n  = optional_param('n', 0, PARAM_INT);  // jplayer instance ID - it should be named as the first character of the module
@@ -46,9 +47,12 @@ if ($id) {
 }
 
 require_login($course, true, $cm);
-$context = get_context_instance(CONTEXT_MODULE, $cm->id);
+$context = context_module::instance($cm->id);
 
 add_to_log($course->id, 'jplayer', 'view', "view.php?id={$cm->id}", $jplayer->name, $cm->id);
+
+$completion = new completion_info($course);
+$completion->set_module_viewed($cm);
 
 /// Print the page header
 $PAGE->set_url('/mod/jplayer/view.php', array('id' => $cm->id));
@@ -64,7 +68,7 @@ if ($jplayer->intro) { // Conditions to show the intro can change to look for ow
     echo $OUTPUT->box(format_module_intro('jplayer', $jplayer, $cm->id), 'generalbox mod_introbox', 'jplayerintro');
 }
 
-echo jplayer_video($jplayer);
+echo jplayer_video($jplayer, $cm, $context);
 
 // Finish the page
 echo $OUTPUT->footer();
